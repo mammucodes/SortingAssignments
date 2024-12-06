@@ -1,11 +1,16 @@
-package com.example.sortingassignments;
+package com.example.sortingassignments.Service;
 
+import jakarta.annotation.Nonnull;
 import org.springframework.stereotype.Service;
 
 
 @Service
-public class SortingService {
-    public  int[]  bubbleSort(int[] arr){
+public class BubbleSortService {
+    // arr the integer array to be sorted; if input is null, null is returned
+    // and  returns sorted  array in ascending order  by using bubblesort algorithm
+    public int[] bubbleSort (int[] arr) {
+        if(arr == null)
+            return  null;
         int n = arr.length;
         boolean isSwapped;
         for (int i = 0; i < n - 1; i++) {
@@ -22,7 +27,9 @@ public class SortingService {
                 break;
         }
         return arr;
-
+    }
+    public int[] mergeSort(int[] arr){
+        return null;
     }
 
 }

@@ -17,7 +17,7 @@ public class MergeSortServiceTest {
 
     @Test
     public void getMergeSortIfNullTest() {
-        int[] expected = null;
+
         int[] input = null;
         try {
             mss.mergeSort(input);
@@ -39,13 +39,73 @@ public class MergeSortServiceTest {
     }
 
     @Test
-    public void getMergeTest(){
-        int[] arr = {6,2,34,44,12};
-        int[] leftArray = null;
-        int[] rightArray = {34,44,12};
-        int[] excepted = {2,6,12,34,44};
-        mss.merge(arr,leftArray,rightArray);
-        Assertions.assertArrayEquals(excepted,arr);
+    public void getMergeTest() {
+        int[] arr = {6, 2, 34, 44, 12};
+        int[] leftArray = {2, 6};
+        int[] rightArray = {12, 34, 44};
+        int[] excepted = {2, 6, 12, 34, 44};
+        mss.merge(arr, leftArray, rightArray);
+        Assertions.assertArrayEquals(excepted, arr);
     }
 
+    @Test
+    public void getMergeTestIfPassedArrayIsNull() {
+        int[] arr = null;
+        int[] leftArray = {2, 45};
+        int[] rightArray = {4, 7, 5};
+        try {
+            mss.merge(arr, leftArray, rightArray);
+            Assertions.fail("When Null is pass this should throw IllegalArgumentException.. BUt");
+        } catch (Exception ex) {
+            assert ex.getClass().equals(IllegalArgumentException.class);
+        }
+
+    }
+
+    @Test
+    public void getMergeTestIfLeftAndRightArraysAreNull() {
+        int[] arr = {1, 4, 5, 2};
+        int[] leftArray = null;
+        int[] rightArray = null;
+        try {
+            mss.merge(arr, leftArray, rightArray);
+            Assertions.fail("When Null is Passed It should throw an exception  but it is not throwing");
+        } catch (Exception ex) {
+            Assertions.assertEquals(IllegalArgumentException.class, ex.getClass(), "The exception should be IllegalArgumentException");
+
+        }
+    }
+
+    @Test
+    public void getMergeTestIfArrSizeIsLessThanBothLeftAndRightSubArrays() {
+        int[] arr = new int[4];
+        int[] leftArray = {2, 22, 44};
+        int[] rightArray = {22, 35, 43};
+        try {
+            mss.merge(arr, leftArray, rightArray);
+            Assertions.fail("When Arr size is less than total size of left and right array it should throw and exception . BUt it is not throwing");
+        } catch (Exception ex) {
+            Assertions.assertEquals(IllegalArgumentException.class, ex.getClass(), "The excpetion should be IllegalArgumentException");
+        }
+    }
+
+    @Test
+    public void getMergeTestIfLeftArrayIsNull() {
+        int[] arr = new int[3];
+        int[] lefArray = null;
+        int[] rightArray = {2, 3, 4};
+        mss.merge(arr, lefArray, rightArray);
+        int[] excepted = {2, 3, 4};
+        Assertions.assertArrayEquals(excepted, arr);
+    }
+
+    @Test
+    public void getMergeTestIfRightArrayISNull() {
+        int[] arr = new int[4];
+        int[] leftArray = {2, 14, 16, 23};
+        int[] rightArray = null;
+        int[] excepted = {2, 14, 16, 23};
+        mss.merge(arr, leftArray, rightArray);
+        Assertions.assertArrayEquals(excepted, arr);
+    }
 }
