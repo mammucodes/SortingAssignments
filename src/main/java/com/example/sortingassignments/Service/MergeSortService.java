@@ -36,6 +36,8 @@ public class MergeSortService {
     //This methods takes input as orginalarray (size >= size of left array + right array), SORTED leftarray, SORTED rightArray
     // and merge them and updates orginal array with all elements in sorted order
     //if passed inputs are null throws illegal argument exception
+    // If you pass unsorted left o roght array we are not handling it. you should pass sorted
+    // to get the correct output
 
 
     // case1: arr == null, not good inout , throw exception
@@ -43,6 +45,7 @@ public class MergeSortService {
     //case 3 :  if leftArr =null and rightArr!=null then  arr[] = rightArr[];
     //case 4 :  if rightArr =null and leftArr!=null then  arr[] = leftArr[];
     //case 5 :  leftArr != null, rightArr!= null then arr = leftArr+rightArr;
+
     public void merge(int[] arr, int[] leftArray, int[] rightArray) {
 
         if (arr == null) {
